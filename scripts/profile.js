@@ -1,0 +1,80 @@
+const apiUrl = "https://v2.api.noroff.dev/social/profiles";
+
+/**
+ * Fetches a user's profile data
+ * @async
+ * @param {string} userName - Username to fetch
+ * @returns {Promise<Object|null>} Profile data or null
+ */
+export async function fetchProfile(userName) {
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      throw new Error("No access token found. Please log in.");
+    }
+
+    const response = await fetch(`${apiUrl}/${userName}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294", // Add this header
+      },
+    });
+
+    console.log("API Response:", response); // Debugging log
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch profile: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log("Profile Data:", data); // Debugging log
+    return data;
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    window.location.href = "/pages/login.html";
+    return null;
+  }
+}
+
+/**
+ * Updates a user's profile data
+ * @async
+ * @param {Object} profileData - Data to update (e.g., avatar, banner)
+ * @returns {Promise<Object|null>} Updated profile data or null
+ */
+export async function updateProfile(profileData) {
+  try {
+    const token = localStorage.getItem("accessToken");
+    const userName = localStorage.getItem("userName");
+
+    if (!token || !userName) {
+      throw new Error("No access token or username found. Please log in.");
+    }
+
+    console.log("Authorization Header:", `Bearer ${token}`);
+    console.log("Profile Data:", profileData);
+
+    const response = await fetch(`${apiUrl}/${userName}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`, // Add the Authorization header
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294", // Add the API key
+      },
+      body: JSON.stringify(profileData), // Ensure profileData is serialized as JSON
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to update profile: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log("Profile updated successfully:", data); // Debugging log
+    return data;
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    return null;
+  }
+}
