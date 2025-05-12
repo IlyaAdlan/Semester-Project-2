@@ -20,6 +20,18 @@
     </header>
     <main>
         <h1>Listings</h1>
+        <div id="sortingControls">
+            <label for="sortBy">Sort by:</label>
+            <select id="sortBy">
+                <option value="price">Price</option>
+                <option value="title">Title</option>
+            </select>
+        </div>
+        <div id="searchControls">
+            <label for="searchQuery">Search:</label>
+            <input type="text" id="searchQuery" placeholder="Search listings..." />
+            <button id="searchButton">Search</button>
+        </div>
         <div id="listingsContainer"></div>
         <div id="paginationControls">
             <button id="prevPage" disabled>Previous</button>

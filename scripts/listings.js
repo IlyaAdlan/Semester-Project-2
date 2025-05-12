@@ -1,8 +1,8 @@
 const apiUrl = "https://v2.api.noroff.dev/auction/listings";
 
-export async function fetchListings(limit = 10, offset = 0) {
+export async function fetchListings(limit = 10, page = 1) {
   try {
-    const response = await fetch(`${apiUrl}?limit=10&page=1`, {
+    const response = await fetch(`${apiUrl}?limit=${limit}&page=${page}`, {
       headers: {
         "Content-Type": "application/json",
         "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294",
@@ -14,11 +14,10 @@ export async function fetchListings(limit = 10, offset = 0) {
     }
 
     const { data, meta } = await response.json();
-    // Ensure no console.log for fetched listings
     return { data, meta };
   } catch (error) {
     console.error("Error fetching listings:", error);
-    return { data: [], meta: { totalCount: 0 } };
+    return { data: [], meta: { nextPage: null, previousPage: null, totalCount: 0 } };
   }
 }
 
@@ -62,43 +61,45 @@ export function renderListings(listings) {
 export async function initializeListingsPage() {
   console.log("Initializing listings page...");
 
-  let currentPage = 1; // Track the current page
+  let currentPage = 1; // Start on the first page
   const listingsPerPage = 10; // Number of listings per page
 
   async function loadPage(page) {
     try {
-        const offset = (page - 1) * listingsPerPage;
-        const { data, meta } = await fetchListings(listingsPerPage, offset);
-        renderListings(data);
+      const listingsContainer = document.getElementById("listingsContainer");
+      listingsContainer.innerHTML = "<p>Loading...</p>"; // Show loading message
 
-        // Debugging log for meta
-        console.log("Pagination Meta:", meta);
+      const { data, meta } = await fetchListings(listingsPerPage, page);
+      renderListings(data);
 
-        document.getElementById("prevPage").disabled = page === 1;
-        document.getElementById("nextPage").disabled = page >= Math.ceil(meta.totalCount / listingsPerPage);
+      console.log("Pagination Meta:", meta);
+
+      document.getElementById("prevPage").disabled = meta.previousPage === null;
+      document.getElementById("nextPage").disabled = meta.nextPage === null;
+
+      currentPage = page;
     } catch (error) {
-        console.error("Error loading page:", error);
-        alert("Failed to load listings. Please try again later.");
+      console.error("Error loading page:", error);
+      alert("Failed to load listings. Please try again later.");
     }
   }
 
+  // Event listener for "Previous" button
   document.getElementById("prevPage").addEventListener("click", (event) => {
     event.preventDefault();
     console.log("Previous button clicked");
     if (currentPage > 1) {
-        currentPage--;
-        console.log("Loading page:", currentPage);
-        loadPage(currentPage);
+      loadPage(currentPage - 1); // Load the previous page
     }
   });
 
+  // Event listener for "Next" button
   document.getElementById("nextPage").addEventListener("click", (event) => {
     event.preventDefault();
     console.log("Next button clicked");
-    currentPage++;
-    console.log("Loading page:", currentPage);
-    loadPage(currentPage);
+    loadPage(currentPage + 1); // Load the next page
   });
 
+  // Load the first page
   loadPage(currentPage);
 }
