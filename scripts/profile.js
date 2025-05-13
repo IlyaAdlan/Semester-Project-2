@@ -18,7 +18,7 @@ export async function fetchProfile(userName) {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294", // Add this header
+        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294", // Corrected the closing quote
       },
     });
 
@@ -61,7 +61,7 @@ export async function updateProfile(profileData) {
       headers: {
         Authorization: `Bearer ${token}`, // Add the Authorization header
         "Content-Type": "application/json",
-        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294", // Add the API key
+        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294", // Corrected the closing quote
       },
       body: JSON.stringify(profileData), // Ensure profileData is serialized as JSON
     });
@@ -76,5 +76,41 @@ export async function updateProfile(profileData) {
   } catch (error) {
     console.error("Error updating profile:", error);
     return null;
+  }
+}
+
+/**
+ * Fetches the user's listings
+ * @async
+ * @returns {Promise<Array>} User's listings or an empty array
+ */
+export async function fetchMyListings() {
+  const apiUrl = "https://v2.api.noroff.dev/auction/profiles";
+  const userName = localStorage.getItem("userName");
+  const accessToken = localStorage.getItem("accessToken");
+
+  console.log("Fetching listings for user:", userName); // Debugging log
+
+  try {
+    const response = await fetch(`${apiUrl}/${userName}/listings`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch profile: ${response.statusText}`);
+    }
+
+    const { data } = await response.json();
+    console.log("Fetched Profile Data:", data); // Debugging log
+    console.log("User Listings:", data || "No listings found"); // Debugging log
+
+    return data || []; // Return an empty array if listings are undefined
+  } catch (error) {
+    console.error("Error fetching user listings:", error);
+    return [];
   }
 }

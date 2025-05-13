@@ -15,23 +15,58 @@
                 <li><a href="listings.html">Listings</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="register.html">Register</a></li>
+                <li><a href="profile.html">Profile</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h1>Listings</h1>
-        <div id="sortingControls">
-            <label for="sortBy">Sort by:</label>
-            <select id="sortBy">
-                <option value="price">Price</option>
-                <option value="title">Title</option>
-            </select>
-        </div>
+        
         <div id="searchControls">
             <label for="searchQuery">Search:</label>
             <input type="text" id="searchQuery" placeholder="Search listings..." />
             <button id="searchButton">Search</button>
         </div>
+
+        <!-- Button to open the modal -->
+        <button id="openCreateListingModal">Create Listing</button>
+
+        <!-- Modal for creating a listing -->
+        <div id="createListingModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span id="closeCreateListingModal" class="close">&times;</span>
+                <form id="createListingForm">
+                    <h2>Create New Listing</h2>
+                    <label for="listingTitle">Title:</label>
+                    <input type="text" id="listingTitle" placeholder="Enter listing title" required />
+
+                    <label for="listingDescription">Description:</label>
+                    <textarea id="listingDescription" placeholder="Enter listing description" required></textarea>
+
+                    <label for="listingDeadline">Deadline:</label>
+                    <input type="datetime-local" id="listingDeadline" required />
+
+                    <label for="listingMedia">Media (comma-separated URLs):</label>
+                    <input type="text" id="listingMedia" placeholder="Enter media URLs" />
+
+                    <button type="submit">Create Listing</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bid Modal -->
+        <div id="bidModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span id="closeBidModal" class="close">&times;</span>
+                <form id="bidForm">
+                    <h2>Place a Bid</h2>
+                    <label for="bidAmount">Bid Amount:</label>
+                    <input type="number" id="bidAmount" placeholder="Enter your bid amount" required />
+                    <button type="submit">Submit Bid</button>
+                </form>
+            </div>
+        </div>
+
         <div id="listingsContainer"></div>
         <div id="paginationControls">
             <button id="prevPage" disabled>Previous</button>

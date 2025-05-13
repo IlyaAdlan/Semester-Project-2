@@ -56,6 +56,11 @@ export async function registerUser(name, email, password) {
   
       const data = await response.json();
       console.log("User logged in successfully:", data);
+  
+      // Store the access token and username in localStorage
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("userName", data.name);
+  
       return data;
     } catch (error) {
       console.error("Error during login", error);

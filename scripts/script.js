@@ -1,14 +1,13 @@
 import { registerUser, loginUser } from "./auth.js";
-import { initializeProfile } from "./profilePage.js";
-import { initializeListingsPage } from "./listings.js";
+import { initializeProfile, displayMyListings, initializeEditModal } from "./profilePage.js";
+import { initializeListingsPage, initializeBidModal } from "./listings.js";
+import { initializeSearch } from "./search.js";
+import { initializeCreateListingModal } from "./create-listing.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded event triggered");
-
   const registerForm = document.getElementById("registerForm");
   const loginForm = document.getElementById("loginForm");
 
-  // Handle registration form submission
   if (registerForm) {
     registerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -35,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Handle login form submission
   if (loginForm) {
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -48,8 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.data?.accessToken) {
           localStorage.setItem("accessToken", data.data.accessToken);
           localStorage.setItem("userName", data.data.name);
-
-          console.log("Access Token:", data.data.accessToken);
 
           alert("Login Successful!");
           window.location.href = "/pages/profile.html";
@@ -65,16 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initialize profile page
   if (window.location.pathname.includes("/pages/profile.html")) {
-    console.log("Initializing profile page");
     initializeProfile();
+    displayMyListings();
+    initializeEditModal(); // Initialize the edit modal
   }
 
-  // Initialize listings page
   if (window.location.pathname.includes("/pages/listings.html")) {
-    console.log("Initializing listings page");
     initializeListingsPage();
+    initializeSearch();
+    initializeCreateListingModal();
+    initializeBidModal(); // Initialize the bid modal
   }
 });
 

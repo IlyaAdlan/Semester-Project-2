@@ -6,7 +6,7 @@
   <title>Profile</title>
   <link rel="stylesheet" href="../styles/style.css">
   <script type="module" src="../scripts/script.js"></script>
-  <script type="module" src="../scripts/profilePage.js"></script>
+
 </head>
 <body>
   <header>
@@ -14,6 +14,8 @@
       <ul>
         <li><a href="../index.html">Home</a></li>
         <li><a href="listings.html">Listings</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
         <li><a href="profile.html">Profile</a></li>
       </ul>
     </nav>
@@ -32,6 +34,33 @@
       <button type="submit">Update Avatar</button>
     </form>
     <button id="logoutButton">Log Out</button>
+    <div id="myListingsContainer">
+      <h2>My Listings</h2>
+      <!-- User's listings will be dynamically rendered here -->
+    </div>
+    <!-- Edit Modal -->
+    <div id="editListingModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span id="closeEditListingModal" class="close">&times;</span>
+        <form id="editListingForm">
+          <h2>Edit Listing</h2>
+          <label for="editListingTitle">Title:</label>
+          <input type="text" id="editListingTitle" placeholder="Enter listing title" required />
+
+          <label for="editListingDescription">Description:</label>
+          <textarea id="editListingDescription" placeholder="Enter listing description" required></textarea>
+
+          <label for="editListingDeadline">Deadline:</label>
+          <input type="datetime-local" id="editListingDeadline" required />
+
+          <label for="editListingMedia">Media (comma-separated URLs):</label>
+          <input type="text" id="editListingMedia" placeholder="Enter media URLs" />
+
+          <button type="submit">Save Changes</button>
+          <button type="button" id="deleteListingButton" style="background-color: red; color: white;">Delete Listing</button>
+        </form>
+      </div>
+    </div>
   </main>
   <footer>
     <p>&copy; 2023 Online Auction Platform</p>
