@@ -20,6 +20,7 @@
     </nav>
   </header>
   <main class="profile-page">
+    <!-- Profile Header Section -->
     <section class="profile-header">
       <div class="profile-avatar">
         <img id="profileAvatar" src="#" alt="Avatar">
@@ -30,6 +31,8 @@
         <p>Credits: <span id="profileCredits">0</span></p>
       </div>
     </section>
+
+    <!-- Profile Actions Section -->
     <section class="profile-actions">
       <form id="avatarForm" class="update-avatar">
         <label for="avatarUrl">Update Avatar:</label>
@@ -38,30 +41,43 @@
       </form>
       <button id="logoutButton" class="logout-button">Log Out</button>
     </section>
+
+    <!-- My Listings Section -->
     <section id="myListingsContainer" class="profile-listings">
       <h2>My Listings</h2>
-      <div id="listingsContainer" class="listings-grid"></div>
+      <div id="listingsContainer" class="listings-grid">
+        <button class="edit-listing-button" data-id="${listing.id}" data-listing='${JSON.stringify(listing)}'>
+          <i class="fas fa-edit"></i> Edit
+        </button>
+      </div>
     </section>
+
     <!-- Edit Modal -->
     <div id="editListingModal" class="modal" style="display: none;">
       <div class="modal-content">
         <span id="closeEditListingModal" class="close">&times;</span>
         <form id="editListingForm">
           <h2>Edit Listing</h2>
-          <label for="editListingTitle">Title:</label>
-          <input type="text" id="editListingTitle" placeholder="Enter listing title" required />
-
-          <label for="editListingDescription">Description:</label>
-          <textarea id="editListingDescription" placeholder="Enter listing description" required></textarea>
-
-          <label for="editListingDeadline">Deadline:</label>
-          <input type="datetime-local" id="editListingDeadline" required />
-
-          <label for="editListingMedia">Media (comma-separated URLs):</label>
-          <input type="text" id="editListingMedia" placeholder="Enter media URLs" />
-
-          <button type="submit">Save Changes</button>
-          <button type="button" id="deleteListingButton" class="delete-button">Delete Listing</button>
+          <div class="form-group">
+            <label for="editListingTitle">Title:</label>
+            <input type="text" id="editListingTitle" placeholder="Enter listing title" required />
+          </div>
+          <div class="form-group">
+            <label for="editListingDescription">Description:</label>
+            <textarea id="editListingDescription" placeholder="Enter listing description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editListingDeadline">Deadline:</label>
+            <input type="datetime-local" id="editListingDeadline" required />
+          </div>
+          <div class="form-group">
+            <label for="editListingMedia">Media (comma-separated URLs):</label>
+            <input type="text" id="editListingMedia" placeholder="Enter media URLs" />
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="save-button">Save Changes</button>
+            <button type="button" id="deleteListingButton" class="delete-button">Delete Listing</button>
+          </div>
         </form>
       </div>
     </div>

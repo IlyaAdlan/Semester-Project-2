@@ -63,39 +63,33 @@ export function renderListings(listings) {
     return;
   }
 
-  console.log("Rendering Listings:", listings); // Debugging log
-
   listingsContainer.innerHTML = ""; // Clear existing content
 
   listings.forEach((listing) => {
+    console.log("Media for listing:", listing.title, listing.media); // Debugging log
+
     const listingElement = document.createElement("div");
-    listingElement.className = "listing";
+    listingElement.className = "listing-card"; // Ensure this class is applied
 
-    const mediaContent = listing.media?.length > 0 ? `<img src="${listing.media[0]}" alt="${listing.title}" />` : "";
+    const mediaContent = listing.media?.length > 0
+      ? `<img src="${listing.media[0]}" alt="${listing.title}" />`
+      : '<div class="placeholder-media">No Image</div>';
 
-    // Calculate the highest bid
     const highestBid = listing.bids?.length > 0
       ? Math.max(...listing.bids.map((bid) => bid.amount))
       : "No bids yet";
 
-    const noBidsBadge = listing.bids?.length === 0
-      ? '<span class="no-bids-badge">No Bids Yet</span>'
-      : '';
-
     listingElement.innerHTML = `
-      <div class="listing-card">
-        <div class="listing-media">
-          ${mediaContent || '<div class="placeholder-media">No Image</div>'}
-        </div>
-        <div class="listing-details">
-          <h3>${listing.title}</h3>
-          <p>${listing.description || "No description available."}</p>
-          <p><strong>Ends At:</strong> ${new Date(listing.endsAt).toLocaleString()}</p>
-          <p><strong>Bids:</strong> ${listing._count?.bids || 0}</p>
-          <p><strong>Highest Bid:</strong> ${highestBid}</p>
-          ${noBidsBadge}
-          <button class="bid-button" data-id="${listing.id}">Place Bid</button>
-        </div>
+      <div class="listing-media">
+        ${mediaContent}
+      </div>
+      <div class="listing-details">
+        <h3>${listing.title}</h3>
+        <p>${listing.description || "No description available."}</p>
+        <p><strong>Ends At:</strong> ${new Date(listing.endsAt).toLocaleString()}</p>
+        <p><strong>Bids:</strong> ${listing._count?.bids || 0}</p>
+        <p><strong>Highest Bid:</strong> ${highestBid}</p>
+        <button class="bid-button" data-id="${listing.id}">Place Bid</button>
       </div>
     `;
 

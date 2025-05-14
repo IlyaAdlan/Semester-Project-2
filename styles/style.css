@@ -57,10 +57,81 @@ footer {
 
 .modal-content {
   background-color: #fff;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  margin: 10% auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.save-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.save-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #a71d2a;
+  transform: scale(1.05);
 }
 
 .close {
@@ -77,28 +148,30 @@ footer {
   cursor: pointer;
 }
 
-/* Styles for the listing cards */
+/* Styles for the auction item cards */
 .listing-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: 2px solid transparent; /* Transparent border for gradient effect */
+  border-radius: 12px; /* Rounded corners */
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 1rem;
-  background-color: #fff;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: linear-gradient(white, white) padding-box, /* Inner white background */
+              linear-gradient(45deg, #ff7eb3, #ff758c, #ff6a5e) border-box; /* Gradient border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin: 1rem; /* Spacing between cards */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
 }
 
 .listing-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  background-color: #f9f9f9;
+  transform: translateY(-8px); /* Slight lift on hover */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  background: linear-gradient(white, white) padding-box, /* Inner white background */
+              linear-gradient(45deg, #ff758c, #ff6a5e, #ff7eb3) border-box; /* Gradient border on hover */
 }
 
 .listing-media {
-  height: 200px;
-  background-color: #f4f4f4;
+  height: 200px; /* Fixed height for media section */
+  background-color: #f4f4f4; /* Placeholder background color */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,16 +180,22 @@ footer {
 .listing-media img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Ensure the image fits nicely */
 }
 
 .placeholder-media {
-  font-size: 1.2rem;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
   color: #888;
+  font-size: 1.2rem;
+  border: 1px dashed #ccc;
 }
 
 .listing-details {
-  padding: 1rem;
+  padding: 1rem; /* Add padding inside the card */
 }
 
 .listing-details h3 {
@@ -138,17 +217,18 @@ footer {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .listing-details button:hover {
   background-color: #0056b3;
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 #listingsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 1rem; /* Spacing between grid items */
   padding: 1rem;
 }
 
@@ -431,9 +511,33 @@ button:hover {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .delete-button:hover {
   background-color: #a71d2a;
+  transform: scale(1.05);
+}
+
+.edit-listing-button {
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.edit-listing-button:hover {
+  background-color: #e0a800;
+  transform: scale(1.05);
+}
+
+.edit-listing-button i {
+  font-size: 1.2rem;
 }
