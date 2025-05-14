@@ -6,7 +6,6 @@
   <title>Profile</title>
   <link rel="stylesheet" href="../styles/style.css">
   <script type="module" src="../scripts/script.js"></script>
-
 </head>
 <body>
   <header>
@@ -16,28 +15,33 @@
         <li><a href="listings.html">Listings</a></li>
         <li><a href="login.html">Login</a></li>
         <li><a href="register.html">Register</a></li>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
       </ul>
     </nav>
   </header>
-  <main>
-    <h1>Profile</h1>
-    <div>
-      <img id="profileAvatar" src="#" alt="Avatar">
-      <h2 id="profileName">Name</h2>
-      <p id="profileEmail">Email</p>
-      <p>Credits: <span id="profileCredits">0</span></p>
-    </div>
-    <form id="avatarForm">
-      <label for="avatarUrl">Update Avatar:</label>
-      <input type="url" id="avatarUrl" placeholder="Enter avatar URL" required>
-      <button type="submit">Update Avatar</button>
-    </form>
-    <button id="logoutButton">Log Out</button>
-    <div id="myListingsContainer">
+  <main class="profile-page">
+    <section class="profile-header">
+      <div class="profile-avatar">
+        <img id="profileAvatar" src="#" alt="Avatar">
+      </div>
+      <div class="profile-info">
+        <h1 id="profileName">Name</h1>
+        <p id="profileEmail">Email</p>
+        <p>Credits: <span id="profileCredits">0</span></p>
+      </div>
+    </section>
+    <section class="profile-actions">
+      <form id="avatarForm" class="update-avatar">
+        <label for="avatarUrl">Update Avatar:</label>
+        <input type="url" id="avatarUrl" placeholder="Enter avatar URL" required>
+        <button type="submit">Update Avatar</button>
+      </form>
+      <button id="logoutButton" class="logout-button">Log Out</button>
+    </section>
+    <section id="myListingsContainer" class="profile-listings">
       <h2>My Listings</h2>
-      <!-- User's listings will be dynamically rendered here -->
-    </div>
+      <div id="listingsContainer" class="listings-grid"></div>
+    </section>
     <!-- Edit Modal -->
     <div id="editListingModal" class="modal" style="display: none;">
       <div class="modal-content">
@@ -57,7 +61,7 @@
           <input type="text" id="editListingMedia" placeholder="Enter media URLs" />
 
           <button type="submit">Save Changes</button>
-          <button type="button" id="deleteListingButton" style="background-color: red; color: white;">Delete Listing</button>
+          <button type="button" id="deleteListingButton" class="delete-button">Delete Listing</button>
         </form>
       </div>
     </div>
