@@ -1,6 +1,5 @@
 import { fetchProfile, fetchMyListings } from "./profile.js";
-
-
+import { initializeCreateListingModal } from "./create-listing.js";
 
 /**
  * Initializes the profile page with user data
@@ -213,5 +212,11 @@ export async function initializeEditModal() {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.pathname.includes("/pages/profile.html")) {
+    initializeCreateListingModal(); // Initialize the "Create Listing" modal
+  }
+});
 
 

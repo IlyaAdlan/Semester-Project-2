@@ -16,15 +16,11 @@ export async function fetchListings(fetchAll = false, limit = 10, page = 1, sort
       url += `&maxBid=${filters.maxBid}`;
     }
 
-    console.log("API Request URL with Filters:", url); // Debugging log
-
     if (filters.status === "active") {
       url += `&endsAt_gte=${new Date().toISOString()}`; // Active auctions
     } else if (filters.status === "ended") {
       url += `&endsAt_lt=${new Date().toISOString()}`; // Ended auctions
     }
-
-    console.log("API Request URL:", url); // Debugging log
 
     const response = await fetch(url, {
       headers: {
@@ -35,25 +31,20 @@ export async function fetchListings(fetchAll = false, limit = 10, page = 1, sort
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("API Error Response:", errorText); // Log the server's error message
       throw new Error(`Failed to fetch listings: ${response.statusText}`);
     }
 
     const { data, meta } = await response.json();
-    console.log("Fetched Listings with Filters:", data); // Debugging log
     return { data, meta };
   } catch (error) {
-    console.error("Error fetching listings:", error);
     return { data: [], meta: { nextPage: null, previousPage: null, totalCount: 0 } };
   }
 }
 
-export function renderListings(listings) {  
-  console.log("Rendering Listings:", listings); // Debugging log
+export function renderListings(listings) {
   const listingsContainer = document.getElementById("listingsContainer");
 
   if (!Array.isArray(listings)) {
-    console.error("Expected an array for listings, but got:", listings);
     listingsContainer.innerHTML = "<p>Failed to load listings. Please try again later.</p>";
     return;
   }
@@ -66,31 +57,32 @@ export function renderListings(listings) {
   listingsContainer.innerHTML = ""; // Clear existing content
 
   listings.forEach((listing) => {
-    console.log("Media for listing:", listing.title, listing.media); // Debugging log
-
     const listingElement = document.createElement("div");
-    listingElement.className = "listing-card"; // Ensure this class is applied
+    listingElement.className = "listing-card";
 
-    const mediaContent = listing.media?.length > 0
-      ? `<img src="${listing.media[0]}" alt="${listing.title}" />`
-      : '<div class="placeholder-media">No Image</div>';
+    const validMedia = listing.media?.filter((media) => isValidUrl(media.url)) || [];
+    const mediaContent = validMedia.length > 0
+      ? `<img src="${validMedia[0].url}" alt="${listing.title}" />`
+      : "";
 
     const highestBid = listing.bids?.length > 0
       ? Math.max(...listing.bids.map((bid) => bid.amount))
       : "No bids yet";
 
     listingElement.innerHTML = `
-      <div class="listing-media">
-        ${mediaContent}
-      </div>
-      <div class="listing-details">
-        <h3>${listing.title}</h3>
-        <p>${listing.description || "No description available."}</p>
-        <p><strong>Ends At:</strong> ${new Date(listing.endsAt).toLocaleString()}</p>
-        <p><strong>Bids:</strong> ${listing._count?.bids || 0}</p>
-        <p><strong>Highest Bid:</strong> ${highestBid}</p>
-        <button class="bid-button" data-id="${listing.id}">Place Bid</button>
-      </div>
+      <a href="item.html?id=${listing.id}" class="auction-link">
+        <div class="listing-media">
+          ${mediaContent}
+        </div>
+        <div class="listing-details">
+          <h3>${listing.title}</h3>
+          <p>${listing.description || "No description available."}</p>
+          <p><strong>Ends At:</strong> ${new Date(listing.endsAt).toLocaleString()}</p>
+          <p><strong>Bids:</strong> ${listing._count?.bids || 0}</p>
+          <p><strong>Highest Bid:</strong> ${highestBid}</p>
+        </div>
+      </a>
+      <button class="btn-primary bid-button" data-id="${listing.id}">Place Bid</button>
     `;
 
     listingsContainer.appendChild(listingElement);
@@ -99,7 +91,6 @@ export function renderListings(listings) {
 
 // filepath: c:\Users\ADLAN\Documents\GitHub\Semester-Project-2\scripts\listings.js
 export async function initializeListingsPage() {
-  console.log("Initializing listings page...");
 
   let currentPage = 1; // Start on the first page
   const listingsPerPage = 10; // Number of listings per page
@@ -112,7 +103,6 @@ export async function initializeListingsPage() {
 
   async function loadPage(page, sortBy = currentSort, filters = currentFilters) {
     try {
-      console.log("Loading Page:", page, "Sort By:", sortBy, "Filters:", filters); // Debugging log
 
       const listingsContainer = document.getElementById("listingsContainer");
       const loadingSpinner = document.getElementById("loadingSpinner");
@@ -242,16 +232,11 @@ export function initializeBidModal() {
       return;
     }
 
-    console.log("Bid Amount:", bidAmount); // Debugging log
-
     try {
       const accessToken = localStorage.getItem("accessToken");
       const apiUrl = `https://v2.api.noroff.dev/auction/listings/${currentListingId}/bids`;
 
-      console.log("API URL:", apiUrl); // Debugging log
-
       const payload = { amount: bidAmount };
-      console.log("Payload:", payload); // Debugging log
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -265,15 +250,22 @@ export function initializeBidModal() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error("API Error Response:", errorData); // Debugging log
         throw new Error("Failed to place bid.");
       }
 
       alert("Bid placed successfully!");
       modal.style.display = "none";
     } catch (error) {
-      console.error("Error placing bid:", error);
       alert("Failed to place bid. Please try again.");
     }
   });
+}
+
+function isValidUrl(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
 }

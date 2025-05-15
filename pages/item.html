@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auction Item</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script type="module" src="../scripts/item.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <a href="../index.html">My Auction</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="listings.html">Listings</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="itemDetails" class="item-details">
+      <div class="item-container">
+        <!-- Left: Item Image, Ends At, and Bids -->
+        <div class="item-image-frame">
+          <div class="item-image">
+            <img id="itemImage" src="" alt="Item Image" />
+          </div>
+          <p class="item-ends-at"><strong>Ends At:</strong> <span id="itemEndsAt">Loading...</span></p>
+          <p class="item-bids"><strong>Bids:</strong> <span id="itemBidsCount">0</span></p>
+        </div>
+
+        <!-- Right: Item Information -->
+        <div class="item-info">
+          <h1 id="itemTitle">Loading...</h1>
+          <p id="itemDescription">Loading description...</p>
+          <p><strong>Highest Bid:</strong> <span id="itemHighestBid">No bids yet</span></p>
+        </div>
+      </div>
+      <!-- Bids Section -->
+      <div id="bidsSection" class="bids-section">
+        <h2>Bid History</h2>
+        <ul id="bidsList">
+          <li>No bids yet</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Online Auction Platform</p>
+  </footer>
+</body>
+</html>

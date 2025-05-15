@@ -5,80 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listings</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script type="module" src="../scripts/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="listings.html">Listings</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </nav>
+<body class="listings-page">
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">My Auction</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="listings.html">Listings</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="profile.html"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
     </header>
     <main>
-        <header class="listings-header">
-            <h1>Explore Auction Listings</h1>
-            <p>Find and bid on your favorite items. Don't miss out on great deals!</p>
-        </header>
-        <div id="searchControls">
-            <label for="searchQuery">Search:</label>
-            <input type="text" id="searchQuery" placeholder="Search listings..." />
-            <button id="searchButton">Search</button>
-        </div>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="decorative-line"></div>
+                <h1>Explore Auction Listings</h1>
+                <p>Find and bid on your favorite items. Don't miss out on great deals!</p>
+                <a href="listings.html" class="btn-primary">Explore Auctions</a>
+            </div>
+        </section>
+        <div class="controls-container">
+            <div class="search-sort-container">
+                <div id="searchControls" class="form-group">
+                    <label for="searchQuery">Search:</label>
+                    <input type="text" id="searchQuery" placeholder="Search listings..." />
+                    <button id="searchButton">Search</button>
+                </div>
 
-        <div id="sortingControls" class="sorting">
-            <label for="sortOptions">Sort By:</label>
-            <select id="sortOptions">
-                <option value="highestBid">Highest Bid</option>
-                <option value="mostRecent">Most Recent</option>
-                <option value="endingSoon">Ending Soon</option>
-            </select>
-        </div>
+                <div id="sortingControls" class="form-group">
+                    <label for="sortOptions">Sort By:</label>
+                    <select id="sortOptions">
+                        <option value="highestBid">Highest Bid</option>
+                        <option value="mostRecent">Most Recent</option>
+                        <option value="endingSoon">Ending Soon</option>
+                    </select>
+                </div>
+            </div>
 
-        <div id="filterControls" class="filters">
-            <label for="minBid">Min Bid:</label>
-            <input type="number" id="minBid" placeholder="0" />
+            <div id="filterControls" class="form-group">
+                <label for="minBid">Min Bid:</label>
+                <input type="number" id="minBid" placeholder="0" />
 
-            <label for="maxBid">Max Bid:</label>
-            <input type="number" id="maxBid" placeholder="1000" />
+                <label for="maxBid">Max Bid:</label>
+                <input type="number" id="maxBid" placeholder="1000" />
 
-            <label for="auctionStatus">Status:</label>
-            <select id="auctionStatus">
-                <option value="all">All</option>
-                <option value="active">Active</option>
-                <option value="ended">Ended</option>
-            </select>
+                <label for="auctionStatus">Status:</label>
+                <select id="auctionStatus">
+                    <option value="all">All</option>
+                    <option value="active">Active</option>
+                    <option value="ended">Ended</option>
+                </select>
 
-            <button id="applyFilters">Apply Filters</button>
-        </div>
-
-        <!-- Button to open the modal -->
-        <button id="openCreateListingModal">Create Listing</button>
-
-        <!-- Modal for creating a listing -->
-        <div id="createListingModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span id="closeCreateListingModal" class="close">&times;</span>
-                <form id="createListingForm">
-                    <h2>Create New Listing</h2>
-                    <label for="listingTitle">Title:</label>
-                    <input type="text" id="listingTitle" placeholder="Enter listing title" required />
-
-                    <label for="listingDescription">Description:</label>
-                    <textarea id="listingDescription" placeholder="Enter listing description" required></textarea>
-
-                    <label for="listingDeadline">Deadline:</label>
-                    <input type="datetime-local" id="listingDeadline" required />
-
-                    <label for="listingMedia">Media (comma-separated URLs):</label>
-                    <input type="text" id="listingMedia" placeholder="Enter media URLs" />
-
-                    <button type="submit">Create Listing</button>
-                </form>
+                <button id="applyFilters">Apply Filters</button>
             </div>
         </div>
 
@@ -97,7 +90,19 @@
 
         <div id="loadingSpinner" class="spinner" style="display: none;"></div>
 
-        <div id="listingsContainer"></div>
+        <div id="listingsContainer">
+            <div class="auction-item">
+                <a href="item.html?id=ITEM_ID" class="auction-link">
+                    <img src="path/to/image.jpg" alt="Auction Item" />
+                    <h3>Item Title</h3>
+                    <p>Description of the item goes here. Keep it concise and informative.</p>
+                    <p><strong>Ends At:</strong> 6.4.2025, 18:39:00</p>
+                    <p><strong>Bids:</strong> 1</p>
+                    <p><strong>Highest Bid:</strong> $2</p>
+                </a>
+                <button class="btn-primary">Place Bid</button>
+            </div>
+        </div>
         <div id="paginationControls" class="pagination">
             <button id="prevPage" disabled>&laquo; Previous</button>
             <span id="currentPage">Page 1</span>

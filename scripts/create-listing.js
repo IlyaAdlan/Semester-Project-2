@@ -9,6 +9,12 @@ export function initializeCreateListingModal() {
   const closeModalButton = document.getElementById("closeCreateListingModal");
   const createListingForm = document.getElementById("createListingForm");
 
+  // Check if the modal and related elements exist
+  if (!modal || !openModalButton || !closeModalButton || !createListingForm) {
+    console.warn("Create Listing modal elements not found on this page.");
+    return;
+  }
+
   // Open the modal
   openModalButton.addEventListener("click", () => {
     modal.style.display = "block";

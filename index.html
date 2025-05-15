@@ -5,26 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Auction Platform</title>
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script type="module" src="scripts/main.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pages/listings.html">Listings</a></li>
-                <li><a href="pages/login.html">Login</a></li>
-                <li><a href="pages/register.html">Register</a></li>
-                <li><a href="pages/profile.html">Profile</a></li>
-            </ul>
-        </nav>
+
+<body class="index-page">
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">My Auction</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="pages/listings.html">Listings</a></li>
+                    <li><a href="pages/login.html">Login</a></li>
+                    <li><a href="pages/register.html">Register</a></li>
+                    <li><a href="pages/profile.html">Profile</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="pages/profile.html"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
     </header>
     <main>
-        <h1>Welcome to the Online Auction Platform</h1>
-        <p>Browse, bid, and win your favorite items!</p>
+        <section class="hero index-hero">
+            <div class="hero-content">
+                <h1>Welcome to My Auction</h1>
+                <p>Browse, bid, and win your favorite items!</p>
+                <a href="pages/listings.html" class="btn-primary">Explore Listings</a>
+            </div>
+            <div class="hero-image">
+                <img src="/Image/auctionimage.png" alt="Auction Hero Image">
+            </div>
+        </section>
+        <section class="featured-auctions">
+            <h2>Featured Auctions</h2>
+            <div id="featuredAuctionsContainer" class="auction-items"></div>
+        </section>
     </main>
     <footer>
         <p>&copy; 2023 Online Auction Platform</p>
     </footer>
-    <script src="scripts/main.js"></script>
 </body>
 </html>

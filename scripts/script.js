@@ -7,15 +7,12 @@ import { initializeCreateListingModal } from "./create-listing.js";
 document.addEventListener("DOMContentLoaded", () => {
   const registerForm = document.getElementById("registerForm");
   const loginForm = document.getElementById("loginForm");
-
   if (registerForm) {
     registerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-
       try {
         const data = await registerUser(name, email, password);
         if (data.data?.id) {
@@ -33,20 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
   if (loginForm) {
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-
       try {
         const data = await loginUser(email, password);
         if (data.data?.accessToken) {
           localStorage.setItem("accessToken", data.data.accessToken);
           localStorage.setItem("userName", data.data.name);
-
           alert("Login Successful!");
           window.location.href = "/pages/profile.html";
         } else {
@@ -60,17 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
   if (window.location.pathname.includes("/pages/profile.html")) {
     initializeProfile();
     displayMyListings();
     initializeEditModal(); // Initialize the edit modal
+    initializeCreateListingModal(); // Initialize the "Create Listing" modal
   }
 
   if (window.location.pathname.includes("/pages/listings.html")) {
     initializeListingsPage();
     initializeSearch();
-    initializeCreateListingModal();
     initializeBidModal(); // Initialize the bid modal
   }
 });
