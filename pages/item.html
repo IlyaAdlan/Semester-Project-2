@@ -43,19 +43,54 @@
           <h1 id="itemTitle">Loading...</h1>
           <p id="itemDescription">Loading description...</p>
           <p><strong>Highest Bid:</strong> <span id="itemHighestBid">No bids yet</span></p>
+          <button id="placeBidButton" class="btn-primary">Place Bid</button>
         </div>
       </div>
       <!-- Bids Section -->
       <div id="bidsSection" class="bids-section">
         <h2>Bid History</h2>
         <ul id="bidsList">
-          <li>No bids yet</li>
+          <!-- Bids will be dynamically inserted here -->
         </ul>
       </div>
     </section>
+
+    <!-- Bid Modal -->
+    <div id="bidModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span id="closeBidModal" class="close">&times;</span>
+        <form id="bidForm">
+          <h2>Place a Bid</h2>
+          <label for="bidAmount">Bid Amount:</label>
+          <input type="number" id="bidAmount" placeholder="Enter your bid amount" required />
+          <button type="submit" class="btn-primary">Submit Bid</button>
+        </form>
+      </div>
+    </div>
   </main>
-  <footer>
-    <p>&copy; 2023 Online Auction Platform</p>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <a href="../index.html">My Auction</a>
+      </div>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="listings.html">Listings</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p class="footer-copyright">
+        &copy; 2025 My Auction. All rights reserved.
+      </p>
+    </div>
   </footer>
 </body>
 </html>

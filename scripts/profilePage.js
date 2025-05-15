@@ -17,7 +17,6 @@ export async function initializeProfile() {
 
   try {
     const profile = await fetchProfile(userName);
-    
 
     if (!profile) {
       throw new Error("Failed to fetch profile.");
@@ -28,39 +27,18 @@ export async function initializeProfile() {
     document.getElementById("profileEmail").textContent = profile.data.email;
 
     // Set avatar only if it exists
-    if (profile.data.avatar) {
-      document.getElementById("profileAvatar").src = profile.data.avatar;
+    if (profile.data.avatar?.url) {
+      document.getElementById("profileAvatar").src = profile.data.avatar.url;
+      document.getElementById("profileAvatar").alt = profile.data.avatar.alt || "User Avatar";
     } else {
-      document.getElementById("profileAvatar").removeAttribute("src");
+      document.getElementById("profileAvatar").src = "https://via.placeholder.com/150";
+      document.getElementById("profileAvatar").alt = "Default Avatar";
     }
-    document.getElementById("profileCredits").textContent =
-      profile.data.credits || 0;
-    // Handle avatar update
-    const avatarForm = document.getElementById("avatarForm");
-    avatarForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const avatarUrl = document.getElementById("avatarUrl").value.trim(); // Ensure it's a string
-      try {
-        console.log("Avatar URL:", avatarUrl); // Debugging log
-        const updatedProfile = await updateProfile({ avatar: avatarUrl }); // Pass the URL as a string
-        if (updatedProfile) {
-          document.getElementById("profileAvatar").src = updatedProfile.avatar;
-          alert("Avatar updated successfully!");
-        }
-      } catch (error) {
-        console.error("Error updating profile:", error);
-        alert("Failed to update avatar. Please try again.");
-      }
-    });
-    // Handle logout
-    const logoutButton = document.getElementById("logoutButton");
-    logoutButton.addEventListener("click", () => {
-      localStorage.clear();
-      window.location.href = "/pages/login.html";
-    });
+
+    document.getElementById("profileCredits").textContent = profile.data.credits || 0;
   } catch (error) {
     console.error("Error initializing profile:", error);
-    alert("Error loading profile. Please try again.");
+    alert("Failed to load profile. Please try again.");
   }
 }
 

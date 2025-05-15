@@ -32,22 +32,79 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("itemHighestBid").textContent =
       item.bids?.length > 0 ? `$${Math.max(...item.bids.map((bid) => bid.amount))}` : "No bids yet";
 
+    console.log(item.bids);
+
     // Populate bids section
     const bidsList = document.getElementById("bidsList");
     bidsList.innerHTML = ""; // Clear existing content
 
     if (item.bids?.length > 0) {
       item.bids.forEach((bid) => {
+        const avatarUrl = bid.bidder.avatar?.url || "https://via.placeholder.com/40";
         const listItem = document.createElement("li");
         listItem.innerHTML = `
-          <span>${bid.bidder.name}</span>
-          <span>$${bid.amount}</span>
+          <div class="bid-left">
+            <img src="${avatarUrl}" 
+                 alt="${bid.bidder.name}'s Profile Picture" 
+                 class="profile-picture">
+            <span class="username">${bid.bidder.name}</span>
+          </div>
+          <span class="bid-amount">$${bid.amount}</span>
         `;
         bidsList.appendChild(listItem);
       });
     } else {
       bidsList.innerHTML = "<li>No bids yet</li>";
     }
+
+    // Handle "Place Bid" button
+    const bidModal = document.getElementById("bidModal");
+    const closeBidModal = document.getElementById("closeBidModal");
+    const placeBidButton = document.getElementById("placeBidButton");
+    const bidForm = document.getElementById("bidForm");
+
+    placeBidButton.addEventListener("click", () => {
+      bidModal.style.display = "block";
+    });
+
+    closeBidModal.addEventListener("click", () => {
+      bidModal.style.display = "none";
+    });
+
+    bidForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const bidAmount = parseFloat(document.getElementById("bidAmount").value);
+
+      if (isNaN(bidAmount) || bidAmount <= 0) {
+        alert("Please enter a valid bid amount.");
+        return;
+      }
+
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        const bidResponse = await fetch(`${apiUrl}/${itemId}/bids`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+            "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294",
+          },
+          body: JSON.stringify({ amount: bidAmount }),
+        });
+
+        if (!bidResponse.ok) {
+          throw new Error("Failed to place bid.");
+        }
+
+        alert("Bid placed successfully!");
+        bidModal.style.display = "none";
+        location.reload(); // Reload the page to update bid history
+      } catch (error) {
+        console.error("Error placing bid:", error);
+        alert("Failed to place bid. Please try again.");
+      }
+    });
   } catch (error) {
     console.error("Error fetching item details:", error);
     document.getElementById("itemDetails").innerHTML = "<p>Failed to load item details.</p>";

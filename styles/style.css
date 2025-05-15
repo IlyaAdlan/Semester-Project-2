@@ -5,6 +5,14 @@ body {
   padding: 0;
 }
 
+/* Ensure the body and html take up the full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Navbar Styles */
 header {
   
@@ -49,6 +57,7 @@ header nav ul li a.active {
 main {
     padding: 2rem;
     text-align: center;
+    flex: 1;
 }
 
 /* Footer Styles */
@@ -189,22 +198,39 @@ footer p:hover {
   color: black;
 }
 
+/* Ensure consistent size for listing cards */
 .listing-card {
   display: flex;
   flex-direction: column;
-  border: 2px solid transparent; /* Transparent border for gradient effect */
-  border-radius: 12px; /* Rounded corners */
-  overflow: hidden;
-  background: linear-gradient(white, white) padding-box, /* Inner white background */
-              linear-gradient(45deg, #ff7eb3, #ff758c, #ff6a5e) border-box; /* Gradient border */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  margin: 1rem; /* Spacing between cards */
-  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+  justify-content: space-between; /* Space out content evenly */
+  align-items: center;
+  border: 2px solid transparent; /* Keep the gradient border */
+  border-radius: 12px;
+  background: linear-gradient(white, white) padding-box, 
+              linear-gradient(45deg, #ff7eb3, #ff758c, #ff6a5e) border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.6rem; /* Further reduce padding */
+  text-align: center;
+  width: 300px; /* Fixed width for consistency */
+  height: 450px; /* Fixed height for consistency */
+  overflow: hidden; /* Hide overflowing content */
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .listing-card:hover {
-  transform: translateY(-8px); /* Slight lift on hover */
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove underline from all links inside listing cards */
+.listing-card a {
+  text-decoration: none !important; /* Forcefully remove underline */
+  color: inherit; /* Inherit color from parent */
+}
+
+.listing-card a:hover {
+  text-decoration: none !important; /* Prevent underline on hover */
+  color: inherit; /* Keep the same color on hover */
 }
 
 .listing-media {
@@ -215,10 +241,13 @@ footer p:hover {
   justify-content: center;
 }
 
+/* Ensure consistent image size */
 .listing-media img {
   max-width: 100%;
-  max-height: 200px;
+  max-height: 130px; /* Slightly reduce image height */
   object-fit: cover; /* Ensure the image fits nicely */
+  border-radius: 8px;
+  margin-bottom: 0.4rem; /* Reduce margin below the image */
 }
 
 .placeholder-media {
@@ -232,23 +261,42 @@ footer p:hover {
   border: 1px dashed #ccc;
 }
 
+/* Styling for the item details */
 .listing-details {
-  padding: 1rem; /* Add padding inside the card */
+  flex: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push content to the top and bottom */
+  width: 100%;
 }
 
+/* Styling for the item title */
 .listing-details h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.2rem;
+  color: #007bff;
+  margin-bottom: 0.2rem; /* Further reduce margin below the title */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; /* Truncate long titles */
 }
 
+.listing-details h3:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Limit description length */
 .listing-details p {
-  margin: 0.5rem 0;
+  font-size: 0.9rem;
   color: #555;
+  margin-bottom: 0.2rem; /* Further reduce margin below the description */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Truncate long descriptions */
 }
 
+/* Styling for the "Place Bid" button */
 .listing-details button {
-  margin-top: 1rem;
+  margin-top: auto; /* Push the button to the bottom */
   padding: 0.5rem 1rem;
   background-color: #007bff;
   color: #fff;
@@ -805,6 +853,12 @@ button:disabled {
   font-size: 1.5rem;
   color: #007bff;
   margin-bottom: 0.5rem;
+  text-decoration: none; /* Ensure underline is removed */
+  word-wrap: break-word; /* Handle long text */
+}
+
+.auction-item h3:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
 }
 
 .auction-item p {
@@ -1088,6 +1142,7 @@ button:disabled {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 100px;
 }
 
 .bids-section h2 {
@@ -1096,6 +1151,59 @@ button:disabled {
   margin-bottom: 1rem;
   border-bottom: 2px solid #007bff;
   padding-bottom: 0.5rem;
+}
+
+/* Style for the bids list */
+.bids-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bids-section li {
+  display: flex;
+  align-items: center; /* Align profile picture and username vertically */
+  justify-content: space-between; /* Space out the left and right sections */
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s;
+}
+
+.bids-section li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Style for the left section (profile picture and username) */
+.bid-left {
+  display: flex;
+  align-items: center; /* Align profile picture and username vertically */
+  gap: 1rem; /* Add spacing between the profile picture and username */
+}
+
+/* Style for the profile picture */
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Make it circular */
+  object-fit: cover; /* Ensure the image fits nicely */
+}
+
+/* Style for the username */
+.username {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  text-align: left; /* Align username to the left */
+}
+
+/* Style for the bid amount */
+.bid-amount {
+  font-size: 1rem;
+  color: #007bff; /* Highlight bid amount */
+  text-align: right;
+  white-space: nowrap; /* Prevent wrapping of the bid amount */
 }
 
 .bids-section ul {
@@ -1133,4 +1241,235 @@ button:disabled {
 .bids-section li span:last-child {
   color: #007bff; /* Highlight bid amount */
   text-align: right; /* Align bid amounts to the right */
+}
+
+/* Remove underline from all links inside auction items */
+.auction-item a {
+  text-decoration: none !important; /* Forcefully remove underline */
+  color: inherit; /* Inherit color from parent */
+  display: block; /* Ensure the link covers the entire item */
+}
+
+.auction-item a:hover {
+  text-decoration: none !important; /* Prevent underline on hover */
+  color: inherit; /* Keep the same color on hover */
+}
+
+/* Styling for the item title */
+.auction-item h3 {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+  text-decoration: none !important; /* Ensure underline is removed */
+  word-wrap: break-word; /* Handle long text */
+}
+
+.auction-item h3:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Ensure the entire auction item is styled properly */
+.auction-item {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.auction-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove underline from all links inside auction items */
+.auction-item a {
+  text-decoration: none !important; /* Forcefully remove underline */
+  color: inherit; /* Inherit color from parent */
+  display: block; /* Ensure the link covers the entire item */
+}
+
+.auction-item a:hover {
+  text-decoration: none !important; /* Prevent underline on hover */
+  color: inherit; /* Keep the same color on hover */
+}
+
+/* Styling for the item title */
+.auction-item h3 {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+  text-decoration: none !important; /* Ensure underline is removed */
+  word-wrap: break-word; /* Handle long text */
+}
+
+.auction-item h3:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Style for input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+textarea {
+  width: 100%; /* Full width */
+  padding: 0.75rem; /* Add padding for better usability */
+  font-size: 1rem; /* Standard font size */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+  margin-bottom: 1rem; /* Add spacing between fields */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Focus effect for input fields */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow effect */
+  outline: none; /* Remove default outline */
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Center the form and limit the width */
+form {
+  max-width: 400px; /* Limit the form width */
+  margin: 0 auto; /* Center the form horizontally */
+  text-align: left; /* Align labels and inputs to the left */
+}
+
+/* Style for input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Full width within the form */
+  padding: 0.6rem; /* Adjust padding for better usability */
+  font-size: 1rem; /* Standard font size */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+  margin-bottom: 1rem; /* Add spacing between fields */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Focus effect for input fields */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow effect */
+  outline: none; /* Remove default outline */
+}
+
+/* Style for labels */
+label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block; /* Ensure labels are above inputs */
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+  width: 100%; /* Full width within the form */
+  padding: 0.6rem; /* Adjust padding */
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Footer Styles */
+.site-footer {
+  background-color: #007bff; /* Match the primary color */
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.footer-nav ul li a:hover {
+  color: #ffcc00; /* Add a hover effect */
+}
+
+.footer-social a {
+  color: white;
+  font-size: 1.2rem;
+  margin: 0 0.5rem;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #ffcc00; /* Add a hover effect */
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: #e0e0e0;
 }
