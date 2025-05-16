@@ -7,33 +7,31 @@ const apiUrl = "https://v2.api.noroff.dev/social/profiles";
  * @returns {Promise<Object|null>} Profile data or null
  */
 export async function fetchProfile(userName) {
+  const apiUrl = "https://v2.api.noroff.dev/social/profiles";
+  const token = localStorage.getItem("accessToken");
+
+  if (!token) {
+    throw new Error("No access token found. Please log in.");
+  }
+
   try {
-    const token = localStorage.getItem("accessToken");
-
-    if (!token) {
-      throw new Error("No access token found. Please log in.");
-    }
-
     const response = await fetch(`${apiUrl}/${userName}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294", // Corrected the closing quote
+        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294",
       },
     });
-
-    console.log("API Response:", response); // Debugging log
 
     if (!response.ok) {
       throw new Error(`Failed to fetch profile: ${response.statusText}`);
     }
 
     const data = await response.json();
-    console.log("Profile Data:", data); // Debugging log
+    console.log("Fetched Profile Data:", data); // Debugging log
     return data;
   } catch (error) {
     console.error("Error fetching profile:", error);
-    window.location.href = "/pages/login.html";
     return null;
   }
 }

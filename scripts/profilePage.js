@@ -22,9 +22,15 @@ export async function initializeProfile() {
       throw new Error("Failed to fetch profile.");
     }
 
+    console.log("Profile Data:", profile); // Debugging log
+
     // Populate profile data
     document.getElementById("profileName").textContent = profile.data.name;
     document.getElementById("profileEmail").textContent = profile.data.email;
+
+    // Display credits (fallback to 0 if missing)
+    const credits = profile.data.credits ?? 0; // Use nullish coalescing to handle missing field
+    document.getElementById("profileCredits").textContent = credits;
 
     // Set avatar only if it exists
     if (profile.data.avatar?.url) {
@@ -34,8 +40,6 @@ export async function initializeProfile() {
       document.getElementById("profileAvatar").src = "https://via.placeholder.com/150";
       document.getElementById("profileAvatar").alt = "Default Avatar";
     }
-
-    document.getElementById("profileCredits").textContent = profile.data.credits || 0;
   } catch (error) {
     console.error("Error initializing profile:", error);
     alert("Failed to load profile. Please try again.");
@@ -63,11 +67,13 @@ export async function displayMyListings() {
         : "";
 
     listingElement.innerHTML = `
-      <h3>${listing.title}</h3>
-      ${mediaContent}
-      <p>${listing.description || "No description available."}</p>
-      <p>Ends At: ${new Date(listing.endsAt).toLocaleString()}</p>
-      <p>Bids: ${listing._count?.bids || 0}</p>
+      <a href="item.html?id=${listing.id}" class="listing-link">
+        <h3>${listing.title}</h3>
+        ${mediaContent}
+        <p>${listing.description || "No description available."}</p>
+        <p>Ends At: ${new Date(listing.endsAt).toLocaleString()}</p>
+        <p>Bids: ${listing._count?.bids || 0}</p>
+      </a>
       <button class="edit-listing-button" data-id="${listing.id}" data-listing='${JSON.stringify(
       listing
     )}'>Edit</button>

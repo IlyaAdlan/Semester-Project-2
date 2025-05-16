@@ -16,10 +16,12 @@ export async function fetchListings(fetchAll = false, limit = 10, page = 1, sort
       url += `&maxBid=${filters.maxBid}`;
     }
 
+    // Filter by status
+    const now = new Date().toISOString();
     if (filters.status === "active") {
-      url += `&endsAt_gte=${new Date().toISOString()}`; // Active auctions
+      url += `&endsAt_gte=${now}`; // Only include items with future end dates
     } else if (filters.status === "ended") {
-      url += `&endsAt_lt=${new Date().toISOString()}`; // Ended auctions
+      url += `&endsAt_lt=${now}`; // Only include items with past end dates
     }
 
     const response = await fetch(url, {
@@ -37,6 +39,7 @@ export async function fetchListings(fetchAll = false, limit = 10, page = 1, sort
     const { data, meta } = await response.json();
     return { data, meta };
   } catch (error) {
+    console.error("Error fetching listings:", error);
     return { data: [], meta: { nextPage: null, previousPage: null, totalCount: 0 } };
   }
 }
@@ -68,6 +71,8 @@ export function renderListings(listings) {
     const highestBid = listing.bids?.length > 0
       ? Math.max(...listing.bids.map((bid) => bid.amount))
       : "No bids yet";
+
+    console.log("Listing endsAt:", listing.endsAt);
 
     listingElement.innerHTML = `
       <a href="item.html?id=${listing.id}" class="auction-link">
