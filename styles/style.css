@@ -811,6 +811,28 @@ button:disabled {
 
 .featured-auctions {
   text-align: center;
+  padding: 4rem 2rem 2rem 2rem; /* Add more top padding, less bottom */
+  background-color: #f9f9f9;
+  margin-bottom: 3rem; /* Add space below the section */
+}
+
+.auction-items {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem; /* Add space below the items */
+}
+
+@media (max-width: 768px) {
+  .auction-items {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.featured-auctions {
+  text-align: center;
   padding: 4rem 2rem;
   background-color: #f9f9f9;
 }
@@ -1472,4 +1494,147 @@ button[type="submit"]:hover {
 .footer-copyright {
   font-size: 0.8rem;
   color: #e0e0e0;
+}
+
+/* --- Mobile First: 380px and up --- */
+@media (max-width: 480px) {
+  body, html {
+    font-size: 15px;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  .listing-card,
+  .auction-item {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    padding: 0.5rem;
+  }
+
+  .listing-media,
+  .placeholder-media {
+    height: 120px;
+  }
+
+  .listing-details h3,
+  .auction-item h3 {
+    font-size: 1rem;
+    white-space: normal;
+  }
+
+  .listing-details p,
+  .auction-item p {
+    font-size: 0.9rem;
+    white-space: normal;
+  }
+
+  .profile-header,
+  .profile-listings,
+  .listings-header {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+
+  .controls-container,
+  .filters,
+  .sorting {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .item-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .item-image img {
+    max-width: 100%;
+  }
+}
+
+/* --- Tablet: 481px to 900px --- */
+@media (min-width: 481px) and (max-width: 900px) {
+  .listing-card,
+  .auction-item {
+    width: 90%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .controls-container,
+  .filters,
+  .sorting {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+}
+
+/* --- Desktop: 901px and up --- */
+@media (min-width: 901px) {
+  .listing-card,
+  .auction-item {
+    width: 300px;
+    height: 450px;
+  }
+
+  .modal-content {
+    width: 50%;
+  }
+}
+
+/* Responsive item page layout for small screens */
+@media (max-width: 768px) {
+  .item-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .item-image-frame,
+  .item-info {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .item-image img {
+    max-width: 90vw;
+    height: auto;
+    margin: 0 auto 1rem auto;
+    display: block;
+  }
+
+  .item-info h1,
+  .item-info p,
+  .item-info button {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-primary,
+  #placeBidButton {
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem auto 0 auto;
+    display: block;
+  }
 }

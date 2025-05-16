@@ -81,7 +81,6 @@ export function renderListings(listings) {
         </div>
         <div class="listing-details">
           <h3>${listing.title}</h3>
-          <p>${listing.description || "No description available."}</p>
           <p><strong>Ends At:</strong> ${new Date(listing.endsAt).toLocaleString()}</p>
           <p><strong>Bids:</strong> ${listing._count?.bids || 0}</p>
           <p><strong>Highest Bid:</strong> ${highestBid}</p>
@@ -96,77 +95,79 @@ export function renderListings(listings) {
 
 // filepath: c:\Users\ADLAN\Documents\GitHub\Semester-Project-2\scripts\listings.js
 export async function initializeListingsPage() {
-
-  let currentPage = 1; // Start on the first page
-  const listingsPerPage = 10; // Number of listings per page
-  let currentSort = ""; // Default sorting
-  let currentFilters = {}; // Default filters
-  let allListings = []; // Store all listings for client-side sorting and pagination
+  let currentPage = 1;
+  const listingsPerPage = 10;
+  let currentSort = "";
+  let currentFilters = {};
+  let allListings = [];
 
   // Initialize search functionality
   initializeSearch();
 
   async function loadPage(page, sortBy = currentSort, filters = currentFilters) {
     try {
-
       const listingsContainer = document.getElementById("listingsContainer");
       const loadingSpinner = document.getElementById("loadingSpinner");
 
-      listingsContainer.innerHTML = ""; // Clear existing content
-      loadingSpinner.style.display = "block"; // Show spinner
+      listingsContainer.innerHTML = "";
+      loadingSpinner.style.display = "block";
 
-      // Fetch all listings if sorting or filtering is applied
-      if (sortBy || Object.keys(filters).length > 0) {
-        const { data } = await fetchListings(true, listingsPerPage, page, sortBy, filters); // Fetch all listings
+      let paginatedListings = [];
+      let totalCount = 0;
+
+      // If sorting or filtering, fetch all and paginate client-side
+      if (sortBy || (filters && Object.keys(filters).length > 0 && Object.values(filters).some(v => v))) {
+        const { data } = await fetchListings(true, listingsPerPage, page, sortBy, filters);
         allListings = data;
 
-        // Apply client-side filtering for Min Bid and Max Bid
-        if (filters.minBid) {
-          allListings = allListings.filter((listing) => {
-            const highestBid = listing.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : 0;
-            return highestBid >= filters.minBid;
-          });
+        // --- Filter by status client-side ---
+        if (filters && filters.status && filters.status !== "all") {
+          const now = new Date();
+          if (filters.status === "active") {
+            allListings = allListings.filter(listing => new Date(listing.endsAt) > now);
+          } else if (filters.status === "ended") {
+            allListings = allListings.filter(listing => new Date(listing.endsAt) <= now);
+          }
         }
-        if (filters.maxBid) {
-          allListings = allListings.filter((listing) => {
-            const highestBid = listing.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : 0;
-            return highestBid <= filters.maxBid;
-          });
-        }
+        // --- End status filter ---
 
-        // Apply sorting
-        if (sortBy === "highestBid") {
-          allListings.sort((a, b) => {
-            const highestBidA = a.bids?.length > 0 ? Math.max(...a.bids.map((bid) => bid.amount)) : 0;
-            const highestBidB = b.bids?.length > 0 ? Math.max(...b.bids.map((bid) => bid.amount)) : 0;
-            return highestBidB - highestBidA; // Descending order
-          });
-        } else if (sortBy === "mostRecent") {
-          allListings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Descending order
-        } else if (sortBy === "endingSoon") {
-          allListings.sort((a, b) => new Date(a.endsAt) - new Date(b.endsAt)); // Ascending order
+        // --- Sorting block ---
+        if (sortBy) {
+          if (sortBy === "highestBid") {
+            allListings.sort((a, b) => {
+              const aBid = a.bids?.length ? Math.max(...a.bids.map(bid => bid.amount)) : 0;
+              const bBid = b.bids?.length ? Math.max(...b.bids.map(bid => bid.amount)) : 0;
+              return bBid - aBid;
+            });
+          } else if (sortBy === "mostRecent") {
+            allListings.sort((a, b) => new Date(b.created) - new Date(a.created));
+          } else if (sortBy === "endingSoon") {
+            allListings.sort((a, b) => new Date(a.endsAt) - new Date(b.endsAt));
+          }
         }
+        // --- End sorting block ---
+
+        totalCount = allListings.length;
+        const startIndex = (page - 1) * listingsPerPage;
+        paginatedListings = allListings.slice(startIndex, startIndex + listingsPerPage);
       } else {
-        // Fetch only the current page if no sorting or filtering is applied
-        const { data } = await fetchListings(false, listingsPerPage, page, sortBy, filters);
-        allListings = data;
+        // Server-side pagination
+        const { data, meta } = await fetchListings(false, listingsPerPage, page, sortBy, filters);
+        paginatedListings = data;
+        totalCount = meta?.totalCount || 0;
       }
-
-      // Paginate the sorted and filtered data
-      const startIndex = (page - 1) * listingsPerPage;
-      const paginatedListings = allListings.slice(startIndex, startIndex + listingsPerPage);
 
       renderListings(paginatedListings);
 
-      loadingSpinner.style.display = "none"; // Hide spinner
+      loadingSpinner.style.display = "none";
 
-      // Update the current page and pagination controls
+      // Update pagination controls
       currentPage = page;
       currentSort = sortBy;
       currentFilters = filters;
       document.getElementById("currentPage").textContent = `Page ${currentPage}`;
       document.getElementById("prevPage").disabled = currentPage === 1;
-      document.getElementById("nextPage").disabled = startIndex + listingsPerPage >= allListings.length;
+      document.getElementById("nextPage").disabled = paginatedListings.length < listingsPerPage || (totalCount && currentPage * listingsPerPage >= totalCount);
     } catch (error) {
       console.error("Error loading page:", error);
     }
