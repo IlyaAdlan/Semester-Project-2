@@ -6,7 +6,8 @@ const apiUrl = "https://v2.api.noroff.dev/social/profiles";
  * @param {string} userName - Username to fetch
  * @returns {Promise<Object|null>} Profile data or null
  */
-export async function fetchProfile(userName) {
+export async function 
+fetchProfile(userName) {
   const apiUrl = "https://v2.api.noroff.dev/social/profiles";
   const token = localStorage.getItem("accessToken");
 
