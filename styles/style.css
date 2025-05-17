@@ -1530,6 +1530,52 @@ button[type="submit"]:hover {
   .item-image img {
     max-width: 100%;
   }
+
+  .bids-section {
+    padding: 0.5rem;
+    margin: 0.5rem auto 1rem auto;
+    min-width: 0;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .bids-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .bids-section li {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.3rem;
+    padding: 0.5rem 0.5rem;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .bid-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .profile-picture {
+    width: 32px;
+    height: 32px;
+  }
+
+  .username, .bid-amount {
+    font-size: 1rem;
+    word-break: break-all;
+  }
+
+  .bid-amount {
+    color: #007bff;
+    font-weight: bold;
+    margin-left: auto;
+    margin-top: 0.2rem;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 900px) {
