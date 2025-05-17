@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname.includes("/pages/profile.html")) {
     initializeProfile();
     displayMyListings();
-    initializeEditModal(); // Initialize the edit modal
-    initializeCreateListingModal(); // Initialize the "Create Listing" modal
+    initializeEditModal();
+    initializeCreateListingModal(); // Only call ONCE
   }
 
   if (window.location.pathname.includes("/pages/listings.html")) {
