@@ -31,4 +31,14 @@ async function displayFeaturedAuctions() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", displayFeaturedAuctions);
+document.addEventListener("DOMContentLoaded", () => {
+  displayFeaturedAuctions();
+
+  // Example: after fetching user profile and credits
+  const credits = localStorage.getItem("userCredits");
+  const navCredits = document.getElementById("navCredits");
+  if (navCredits && credits) {
+    navCredits.textContent = `Credits: ${credits}`;
+    navCredits.style.display = "inline-block";
+  }
+});

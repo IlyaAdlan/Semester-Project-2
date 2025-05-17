@@ -31,6 +31,7 @@ export async function initializeProfile() {
     // Display credits (fallback to 0 if missing)
     const credits = profile.data.credits ?? 0; // Use nullish coalescing to handle missing field
     document.getElementById("profileCredits").textContent = credits;
+    localStorage.setItem("userCredits", credits); // <-- Add this line
 
     // Set avatar only if it exists
     if (profile.data.avatar?.url) {

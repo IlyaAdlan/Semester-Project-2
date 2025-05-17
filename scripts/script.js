@@ -65,6 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeSearch();
     initializeBidModal(); // Initialize the bid modal
   }
+
+  // Show credits in navbar if available
+  const navCredits = document.getElementById("navCredits");
+  const credits = localStorage.getItem("userCredits");
+  if (navCredits && credits) {
+    navCredits.textContent = `Credits: ${credits}`;
+    navCredits.style.display = "inline-block";
+  }
 });
 
 window.addEventListener("error", (event) => {

@@ -450,7 +450,7 @@ button:disabled {
   }
 }
 
-.sorting {
+sorting {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1672,4 +1672,15 @@ button[type="submit"]:hover {
   color: #007bff;
   margin-bottom: 0.5rem;
   text-align: center;
+}
+
+.nav-credits {
+  margin-left: 1rem;
+  font-weight: bold;
+  color: #007bff;
+  background: #f4f8ff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  vertical-align: middle;
 }
