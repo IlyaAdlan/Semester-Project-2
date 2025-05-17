@@ -1,11 +1,10 @@
 body {
-  font-family: 'Poppins', Arial, sans-serif; /* Use Poppins as the primary font */
-  line-height: 1.6; /* Adjust line height for better readability */
+  font-family: 'Poppins', Arial, sans-serif;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
-/* Ensure the body and html take up the full height */
 html, body {
   height: 100%;
   margin: 0;
@@ -13,71 +12,68 @@ html, body {
   flex-direction: column;
 }
 
-/* Navbar Styles */
 header {
-  
   color: white;
   padding: 1rem 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 
 header nav ul li {
-    margin: 0 1rem;
+  margin: 0 1rem;
 }
 
 header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: bold;
-    transition: color 0.3s, transform 0.3s; /* Smooth hover effect */
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
 }
 
 header nav ul li a:hover {
-    color: #ffcc00; /* Change color on hover */
-    transform: scale(1.1); /* Slight zoom on hover */
+  color: #ffcc00;
+  transform: scale(1.1);
 }
 
 header nav ul li a.active {
-    color: #ffcc00; /* Highlight active link */
-    text-decoration: underline;
+  color: #ffcc00;
+  text-decoration: underline;
 }
 
 main {
-    padding: 2rem;
-    text-align: center;
-    flex: 1;
+  padding: 2rem;
+  text-align: center;
+  flex: 1;
 }
 
-/* Footer Styles */
 footer {
-  background: #0056b3; /* Dark blue background */
+  background: #0056b3;
   color: white;
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
   font-weight: bold;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 footer p {
   margin: 0;
-  transition: color 0.3s; /* Smooth hover effect */
+  transition: color 0.3s;
 }
 
 footer p:hover {
-  color: #ffcc00; /* Change color on hover */
+  color: #ffcc00;
 }
 
 .modal {
@@ -198,22 +194,21 @@ footer p:hover {
   color: black;
 }
 
-/* Ensure consistent size for listing cards */
 .listing-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Space out content evenly */
+  justify-content: space-between;
   align-items: center;
-  border: 2px solid transparent; /* Keep the gradient border */
+  border: 2px solid transparent;
   border-radius: 12px;
   background: linear-gradient(white, white) padding-box, 
               linear-gradient(45deg, #ff7eb3, #ff758c, #ff6a5e) border-box;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 0.6rem; /* Further reduce padding */
+  padding: 0.6rem;
   text-align: center;
-  width: 300px; /* Fixed width for consistency */
-  height: 450px; /* Fixed height for consistency */
-  overflow: hidden; /* Hide overflowing content */
+  width: 300px;
+  height: 450px;
+  overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -222,32 +217,30 @@ footer p:hover {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Remove underline from all links inside listing cards */
 .listing-card a {
-  text-decoration: none !important; /* Forcefully remove underline */
-  color: inherit; /* Inherit color from parent */
+  text-decoration: none !important;
+  color: inherit;
 }
 
 .listing-card a:hover {
-  text-decoration: none !important; /* Prevent underline on hover */
-  color: inherit; /* Keep the same color on hover */
+  text-decoration: none !important;
+  color: inherit;
 }
 
 .listing-media {
-  height: 200px; /* Fixed height for media section */
-  background-color: #f4f4f4; /* Placeholder background color */
+  height: 200px;
+  background-color: #f4f4f4;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Ensure consistent image size */
 .listing-media img {
   max-width: 100%;
-  max-height: 130px; /* Slightly reduce image height */
-  object-fit: cover; /* Ensure the image fits nicely */
+  max-height: 130px;
+  object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 0.4rem; /* Reduce margin below the image */
+  margin-bottom: 0.4rem;
 }
 
 .placeholder-media {
@@ -261,42 +254,38 @@ footer p:hover {
   border: 1px dashed #ccc;
 }
 
-/* Styling for the item details */
 .listing-details {
-  flex: 1; /* Take up remaining space */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Push content to the top and bottom */
+  justify-content: space-between;
   width: 100%;
 }
 
-/* Styling for the item title */
 .listing-details h3 {
   font-size: 1.2rem;
   color: #007bff;
-  margin-bottom: 0.2rem; /* Further reduce margin below the title */
+  margin-bottom: 0.2rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden; /* Truncate long titles */
+  overflow: hidden;
 }
 
 .listing-details h3:hover {
-  text-decoration: underline; /* Optional: Add underline on hover */
+  text-decoration: underline;
 }
 
-/* Limit description length */
 .listing-details p {
   font-size: 0.9rem;
   color: #555;
-  margin-bottom: 0.2rem; /* Further reduce margin below the description */
+  margin-bottom: 0.2rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; /* Truncate long descriptions */
+  white-space: nowrap;
 }
 
-/* Styling for the "Place Bid" button */
 .listing-details button {
-  margin-top: auto; /* Push the button to the bottom */
+  margin-top: auto;
   padding: 0.5rem 1rem;
   background-color: #007bff;
   color: #fff;
@@ -308,13 +297,13 @@ footer p:hover {
 
 .listing-details button:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
 #listingsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-  gap: 1rem; /* Spacing between grid items */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
   padding: 1rem;
 }
 
@@ -514,7 +503,6 @@ button:disabled {
   background-color: #0056b3;
 }
 
-/* Profile Page Styles */
 .profile-page {
   max-width: 900px;
   margin: 2rem auto;
@@ -524,15 +512,14 @@ button:disabled {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Center the profile header content */
 .profile-header {
   display: flex;
-  flex-direction: column; /* Stack avatar, name, and email vertically */
-  align-items: center; /* Center-align content horizontally */
-  justify-content: center; /* Center-align content vertically */
-  text-align: center; /* Center-align text */
-  gap: 1rem; /* Add spacing between elements */
-  margin-bottom: 4rem; /* Add more space below the profile header */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
 }
 
 .profile-avatar img {
@@ -555,7 +542,6 @@ button:disabled {
   margin: 0.5rem 0;
 }
 
-/* Profile Actions Section */
 .profile-actions {
   display: flex;
   justify-content: center;
@@ -605,9 +591,8 @@ button:disabled {
   background-color: #a71d2a;
 }
 
-/* My Listings Section */
 .profile-listings {
-  margin-top: 4rem; /* Push the listings section down */
+  margin-top: 4rem;
 }
 
 .profile-listings h2 {
@@ -619,8 +604,8 @@ button:disabled {
 
 .listings-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-  gap: 1.5rem; /* Add spacing between listings */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .listing {
@@ -649,7 +634,6 @@ button:disabled {
   margin-bottom: 0.5rem;
 }
 
-/* Header Styles */
 .site-header {
   background: white;
   border-bottom: 1px solid #ddd;
@@ -706,21 +690,20 @@ button:disabled {
   color: #007bff;
 }
 
-/* Hero Section Styles */
 .hero {
   display: flex;
-  flex-direction: column; /* Center the content vertically */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 6rem 3rem;
-  background: linear-gradient(135deg, #dff5e1, #cce7d0); /* Subtle gradient background */
+  background: linear-gradient(135deg, #dff5e1, #cce7d0);
   border-radius: 12px;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Center-align the text */
+  text-align: center;
 }
 
 .hero-content {
-  max-width: 600px; /* Limit the width for better readability */
+  max-width: 600px;
 }
 
 .hero-content h1 {
@@ -755,18 +738,18 @@ button:disabled {
 }
 
 .hero-image {
-  flex: 1; /* Take up 50% of the width */
-  max-width: 50%; /* Ensure it doesn't exceed 50% */
+  flex: 1;
+  max-width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .hero-image img {
-  max-width: 100%; /* Ensure the image fits within its container */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: Add rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -811,16 +794,16 @@ button:disabled {
 
 .featured-auctions {
   text-align: center;
-  padding: 4rem 2rem 2rem 2rem; /* Add more top padding, less bottom */
+  padding: 4rem 2rem 2rem 2rem;
   background-color: #f9f9f9;
-  margin-bottom: 3rem; /* Add space below the section */
+  margin-bottom: 3rem;
 }
 
 .auction-items {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 2rem; /* Add space below the items */
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 768px) {
@@ -875,12 +858,12 @@ button:disabled {
   font-size: 1.5rem;
   color: #007bff;
   margin-bottom: 0.5rem;
-  text-decoration: none; /* Ensure underline is removed */
-  word-wrap: break-word; /* Handle long text */
+  text-decoration: none;
+  word-wrap: break-word;
 }
 
 .auction-item h3:hover {
-  text-decoration: underline; /* Optional: Add underline on hover */
+  text-decoration: underline;
 }
 
 .auction-item p {
@@ -892,11 +875,10 @@ button:disabled {
   width: 80px;
   height: 4px;
   background-color: #007bff;
-  margin: 0 auto 1rem; /* Center the line and add spacing */
+  margin: 0 auto 1rem;
   border-radius: 2px;
 }
 
-/* Controls Container */
 .controls-container {
   display: flex;
   flex-wrap: wrap;
@@ -904,12 +886,11 @@ button:disabled {
   gap: 2rem;
   margin-bottom: 2rem;
   padding: 1rem;
-  background-color: #f9f9f9; /* Light background for better visibility */
+  background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .controls-container {
     flex-direction: column;
@@ -926,62 +907,60 @@ button:disabled {
   }
 }
 
-/* Scoped styles for the index page hero section */
 .index-page .hero {
   display: flex;
-  flex-direction: row; /* Align text and image side by side */
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 6rem 3rem;
-  background: linear-gradient(135deg, #dff5e1, #cce7d0); /* Subtle gradient background */
+  background: linear-gradient(135deg, #dff5e1, #cce7d0);
   border-radius: 12px;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-  text-align: left; /* Align text to the left */
+  text-align: left;
 }
 
 .index-page .hero-content {
-  flex: 1; /* Take up 30% of the width */
-  max-width: 30%; /* Limit the text to 30% of the width */
-  padding-right: 1rem; /* Add spacing between text and image */
+  flex: 1;
+  max-width: 30%;
+  padding-right: 1rem;
 }
 
 .index-page .hero-image {
-  flex: 2; /* Take up 70% of the width */
-  max-width: 70%; /* Limit the image to 70% of the width */
+  flex: 2;
+  max-width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .index-page .hero-image img {
-  max-width: 100%; /* Ensure the image fits within its container */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 8px; /* Optional: Add rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
   .index-page .hero {
-    flex-direction: column; /* Stack text and image vertically */
-    text-align: center; /* Center-align text */
+    flex-direction: column;
+    text-align: center;
   }
 
   .index-page .hero-content {
-    max-width: 100%; /* Allow text to take full width */
+    max-width: 100%;
     padding-right: 0;
     margin-bottom: 2rem;
   }
 
   .index-page .hero-image {
-    max-width: 100%; /* Allow image to take full width */
+    max-width: 100%;
   }
 
   .index-page .hero-image img {
-    width: 100%; /* Ensure the image fits within its container */
+    width: 100%;
   }
 }
 
-/* Style for the Create Listing Button */
 .btn-primary {
   padding: 0.75rem 1.5rem;
   background-color: #007bff;
@@ -996,10 +975,9 @@ button:disabled {
 
 .btn-primary:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
-/* Style for the Edit Button */
 .edit-listing-button {
   display: inline-flex;
   align-items: center;
@@ -1016,15 +994,14 @@ button:disabled {
 }
 
 .edit-listing-button i {
-  font-size: 1.2rem; /* Icon size */
+  font-size: 1.2rem;
 }
 
 .edit-listing-button:hover {
   background-color: #e0a800;
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
-/* Bid Modal Styles */
 #bidModal {
   display: none;
   position: fixed;
@@ -1034,7 +1011,7 @@ button:disabled {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6); /* Darker background overlay */
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 #bidModal .modal-content {
@@ -1043,9 +1020,9 @@ button:disabled {
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 12px;
-  width: 40%; /* Adjust width for better appearance */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-  text-align: center; /* Center-align content */
+  width: 40%;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 #bidModal h2 {
@@ -1085,7 +1062,7 @@ button:disabled {
 
 #bidModal button:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
 #bidModal .close {
@@ -1103,9 +1080,9 @@ button:disabled {
 
 .item-container {
   display: flex;
-  gap: 2rem; /* Space between the image and text */
-  align-items: flex-start; /* Align items at the top */
-  justify-content: center; /* Center the container horizontally */
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
   margin-bottom: 2rem;
   padding: 1.5rem;
   background-color: #f9f9f9;
@@ -1116,31 +1093,31 @@ button:disabled {
 .item-image-frame {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center-align the image and text */
+  align-items: center;
   padding: 1rem;
-  border: 1px solid #ddd; /* Add a frame around the image */
+  border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .item-image img {
-  max-width: 300px; /* Adjust the image size */
+  max-width: 300px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .item-ends-at,
 .item-bids {
-  margin-top: 0.5rem; /* Add space between the text */
+  margin-top: 0.5rem;
   font-size: 1rem;
   color: #555;
-  text-align: center; /* Center-align the text */
+  text-align: center;
 }
 
 .item-info {
   flex: 1;
-  max-width: 500px; /* Limit the width of the text */
+  max-width: 500px;
 }
 
 .item-info h1 {
@@ -1156,10 +1133,10 @@ button:disabled {
 }
 
 .bids-section {
-  margin-top: 2rem; /* Keep a small gap above the bid section */
-  margin-right: auto; /* Center horizontally */
-  margin-bottom: 2rem; /* Add a small gap below */
-  margin-left: auto; /* Center horizontally */
+  margin-top: 2rem;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  margin-left: auto;
   padding: 1.5rem;
   background-color: #fff;
   border-radius: 8px;
@@ -1175,7 +1152,6 @@ button:disabled {
   padding-bottom: 0.5rem;
 }
 
-/* Style for the bids list */
 .bids-section ul {
   list-style: none;
   padding: 0;
@@ -1183,8 +1159,8 @@ button:disabled {
 
 .bids-section li {
   display: flex;
-  align-items: center; /* Align profile picture and username vertically */
-  justify-content: space-between; /* Space out the left and right sections */
+  align-items: center;
+  justify-content: space-between;
   padding: 0.5rem 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -1197,35 +1173,31 @@ button:disabled {
   background-color: #f1f1f1;
 }
 
-/* Style for the left section (profile picture and username) */
 .bid-left {
   display: flex;
-  align-items: center; /* Align profile picture and username vertically */
-  gap: 1rem; /* Add spacing between the profile picture and username */
+  align-items: center;
+  gap: 1rem;
 }
 
-/* Style for the profile picture */
 .profile-picture {
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* Make it circular */
-  object-fit: cover; /* Ensure the image fits nicely */
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-/* Style for the username */
 .username {
   font-weight: bold;
   font-size: 1rem;
   color: #333;
-  text-align: left; /* Align username to the left */
+  text-align: left;
 }
 
-/* Style for the bid amount */
 .bid-amount {
   font-size: 1rem;
-  color: #007bff; /* Highlight bid amount */
+  color: #007bff;
   text-align: right;
-  white-space: nowrap; /* Prevent wrapping of the bid amount */
+  white-space: nowrap;
 }
 
 .bids-section ul {
@@ -1239,10 +1211,10 @@ button:disabled {
   border-radius: 8px;
   margin-bottom: 0.5rem;
   background-color: #f9f9f9;
-  display: grid; /* Use grid layout for better alignment */
-  grid-template-columns: 1fr auto; /* Name takes up remaining space, bid amount is auto-sized */
-  align-items: center; /* Vertically align content */
-  gap: 1rem; /* Add space between name and bid amount */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
   transition: background-color 0.3s;
 }
 
@@ -1252,45 +1224,42 @@ button:disabled {
 
 .bids-section li span {
   font-weight: bold;
-  font-size: 1rem; /* Adjust font size for better readability */
+  font-size: 1rem;
 }
 
 .bids-section li span:first-child {
-  color: #333; /* Neutral color for bidder name */
-  text-align: left; /* Align names to the left */
+  color: #333;
+  text-align: left;
 }
 
 .bids-section li span:last-child {
-  color: #007bff; /* Highlight bid amount */
-  text-align: right; /* Align bid amounts to the right */
+  color: #007bff;
+  text-align: right;
 }
 
-/* Remove underline from all links inside auction items */
 .auction-item a {
-  text-decoration: none !important; /* Forcefully remove underline */
-  color: inherit; /* Inherit color from parent */
-  display: block; /* Ensure the link covers the entire item */
+  text-decoration: none !important;
+  color: inherit;
+  display: block;
 }
 
 .auction-item a:hover {
-  text-decoration: none !important; /* Prevent underline on hover */
-  color: inherit; /* Keep the same color on hover */
+  text-decoration: none !important;
+  color: inherit;
 }
 
-/* Styling for the item title */
 .auction-item h3 {
   font-size: 1.5rem;
   color: #007bff;
   margin-bottom: 0.5rem;
-  text-decoration: none !important; /* Ensure underline is removed */
-  word-wrap: break-word; /* Handle long text */
+  text-decoration: none !important;
+  word-wrap: break-word;
 }
 
 .auction-item h3:hover {
-  text-decoration: underline; /* Optional: Add underline on hover */
+  text-decoration: underline;
 }
 
-/* Ensure the entire auction item is styled properly */
 .auction-item {
   background: white;
   border: 1px solid #ddd;
@@ -1307,60 +1276,55 @@ button:disabled {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Remove underline from all links inside auction items */
 .auction-item a {
-  text-decoration: none !important; /* Forcefully remove underline */
-  color: inherit; /* Inherit color from parent */
-  display: block; /* Ensure the link covers the entire item */
+  text-decoration: none !important;
+  color: inherit;
+  display: block;
 }
 
 .auction-item a:hover {
-  text-decoration: none !important; /* Prevent underline on hover */
-  color: inherit; /* Keep the same color on hover */
+  text-decoration: none !important;
+  color: inherit;
 }
 
-/* Styling for the item title */
 .auction-item h3 {
   font-size: 1.5rem;
   color: #007bff;
   margin-bottom: 0.5rem;
-  text-decoration: none !important; /* Ensure underline is removed */
-  word-wrap: break-word; /* Handle long text */
+  text-decoration: none !important;
+  word-wrap: break-word;
 }
 
 .auction-item h3:hover {
-  text-decoration: underline; /* Optional: Add underline on hover */
+  text-decoration: underline;
 }
 
-/* Style for input fields */
 input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="url"],
 textarea {
-  width: 100%; /* Full width */
-  padding: 0.75rem; /* Add padding for better usability */
-  font-size: 1rem; /* Standard font size */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 4px; /* Rounded corners */
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
-  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-  margin-bottom: 1rem; /* Add spacing between fields */
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
 }
 
-/* Focus effect for input fields */
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="url"]:focus,
 textarea:focus {
-  border-color: #007bff; /* Blue border on focus */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow effect */
-  outline: none; /* Remove default outline */
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
 }
 
-/* Style for the submit button */
 button[type="submit"] {
   padding: 0.75rem 1.5rem;
   background-color: #007bff;
@@ -1375,52 +1339,47 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
-/* Center the form and limit the width */
 form {
-  max-width: 400px; /* Limit the form width */
-  margin: 0 auto; /* Center the form horizontally */
-  text-align: left; /* Align labels and inputs to the left */
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-/* Style for input fields */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-  width: 100%; /* Full width within the form */
-  padding: 0.6rem; /* Adjust padding for better usability */
-  font-size: 1rem; /* Standard font size */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 4px; /* Rounded corners */
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
-  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-  margin-bottom: 1rem; /* Add spacing between fields */
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
 }
 
-/* Focus effect for input fields */
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-  border-color: #007bff; /* Blue border on focus */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow effect */
-  outline: none; /* Remove default outline */
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
 }
 
-/* Style for labels */
 label {
   font-size: 1rem;
   color: #333;
   margin-bottom: 0.5rem;
-  display: block; /* Ensure labels are above inputs */
+  display: block;
 }
 
-/* Style for the submit button */
 button[type="submit"] {
-  width: 100%; /* Full width within the form */
-  padding: 0.6rem; /* Adjust padding */
+  width: 100%;
+  padding: 0.6rem;
   background-color: #007bff;
   color: white;
   font-size: 1rem;
@@ -1433,12 +1392,11 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
-/* Footer Styles */
 .site-footer {
-  background-color: #007bff; /* Match the primary color */
+  background-color: #007bff;
   color: white;
   padding: 2rem 1rem;
   text-align: center;
@@ -1477,7 +1435,7 @@ button[type="submit"]:hover {
 }
 
 .footer-nav ul li a:hover {
-  color: #ffcc00; /* Add a hover effect */
+  color: #ffcc00;
 }
 
 .footer-social a {
@@ -1488,7 +1446,7 @@ button[type="submit"]:hover {
 }
 
 .footer-social a:hover {
-  color: #ffcc00; /* Add a hover effect */
+  color: #ffcc00;
 }
 
 .footer-copyright {
@@ -1496,7 +1454,6 @@ button[type="submit"]:hover {
   color: #e0e0e0;
 }
 
-/* --- Mobile First: 380px and up --- */
 @media (max-width: 480px) {
   body, html {
     font-size: 15px;
@@ -1563,7 +1520,6 @@ button[type="submit"]:hover {
   }
 }
 
-/* --- Tablet: 481px to 900px --- */
 @media (min-width: 481px) and (max-width: 900px) {
   .listing-card,
   .auction-item {
@@ -1585,7 +1541,6 @@ button[type="submit"]:hover {
   }
 }
 
-/* --- Desktop: 901px and up --- */
 @media (min-width: 901px) {
   .listing-card,
   .auction-item {
@@ -1598,7 +1553,6 @@ button[type="submit"]:hover {
   }
 }
 
-/* Responsive item page layout for small screens */
 @media (max-width: 768px) {
   .item-container {
     flex-direction: column !important;

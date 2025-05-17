@@ -6,9 +6,8 @@ const apiUrl = "https://v2.api.noroff.dev/social/profiles";
  * @param {string} userName - Username to fetch
  * @returns {Promise<Object|null>} Profile data or null
  */
-export async function 
-fetchProfile(userName) {
-  const apiUrl = "https://v2.api.noroff.dev/social/profiles";
+export async function fetchProfile(userName) {
+  const apiUrl = "https://v2.api.noroff.dev/auction/profiles";
   const token = localStorage.getItem("accessToken");
 
   if (!token) {
@@ -29,7 +28,6 @@ fetchProfile(userName) {
     }
 
     const data = await response.json();
-    console.log("Fetched Profile Data:", data); // Debugging log
     return data;
   } catch (error) {
     console.error("Error fetching profile:", error);
