@@ -66,7 +66,7 @@ export function renderListings(listings) {
     const validMedia = listing.media?.filter((media) => isValidUrl(media.url)) || [];
     const mediaContent = validMedia.length > 0
       ? `<img src="${validMedia[0].url}" alt="${listing.title}" />`
-      : "";
+      : `<img src="https://via.placeholder.com/300x200?text=No+Image" alt="No Image" />`;
 
     const highestBid = listing.bids?.length > 0
       ? Math.max(...listing.bids.map((bid) => bid.amount))
