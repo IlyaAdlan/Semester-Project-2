@@ -1666,3 +1666,10 @@ button[type="submit"]:hover {
   margin-bottom: 0.3rem;
   word-break: break-word;
 }
+
+.seller-name {
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}

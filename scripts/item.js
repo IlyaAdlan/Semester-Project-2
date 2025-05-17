@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const response = await fetch(`${apiUrl}/${itemId}?_bids=true`, {
+    const response = await fetch(`${apiUrl}/${itemId}?_bids=true&_seller=true`, {
       headers: {
         "Content-Type": "application/json",
         "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294",
@@ -31,6 +31,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("itemBidsCount").textContent = item._count?.bids || 0;
     document.getElementById("itemHighestBid").textContent =
       item.bids?.length > 0 ? `$${Math.max(...item.bids.map((bid) => bid.amount))}` : "No bids yet";
+
+    // Add this to display seller name
+    document.getElementById("sellerName").textContent = item.seller?.name
+      ? `Seller: ${item.seller.name}`
+      : "Seller: Unknown";
 
     console.log(item.bids);
 
