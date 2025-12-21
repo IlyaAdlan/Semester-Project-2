@@ -1,3 +1,10 @@
+/**
+ * Registers a new user with the provided name, email, and password.
+ * @param {string} name - The user's name
+ * @param {string} email - The user's email address
+ * @param {string} password - The user's password
+ * @returns {Promise<Object>} The response data from the API
+ */
 export async function registerUser(name, email, password) {
     // ...existing code...
     const apiUrl = "https://v2.api.noroff.dev/auth/register";
@@ -33,6 +40,12 @@ export async function registerUser(name, email, password) {
     }
   }
   
+  /**
+   * Logs in a user with the provided email and password.
+   * @param {string} email - The user's email address
+   * @param {string} password - The user's password
+   * @returns {Promise<Object>} The response data from the API
+   */
   export async function loginUser(email, password) {
     const apiUrl = "https://v2.api.noroff.dev/auth/login";
   
