@@ -1,5 +1,5 @@
 export async function registerUser(name, email, password) {
-    console.log("Register function called");
+    // ...existing code...
     const apiUrl = "https://v2.api.noroff.dev/auth/register";
   
     const userDetails = {
@@ -9,7 +9,7 @@ export async function registerUser(name, email, password) {
     };
   
     try {
-      console.log("Payload sent to API:", userDetails);
+      // ...existing code...
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -25,7 +25,7 @@ export async function registerUser(name, email, password) {
       }
   
       const data = await response.json();
-      console.log("User registered successfully:", data);
+      // ...existing code...
       return data;
     } catch (error) {
       console.error("Error during registration", error);
@@ -55,7 +55,7 @@ export async function registerUser(name, email, password) {
       }
   
       const data = await response.json();
-      console.log("User logged in successfully:", data);
+      // ...existing code...
   
       // Store the access token and username in localStorage
       localStorage.setItem("accessToken", data.accessToken);
