@@ -79,18 +79,7 @@ async function handleCreateListingSubmit(event) {
     const data = await response.json();
 
     // Fetch the created listing to verify the seller
-    const listingId = data.data.id;
-    const listingResponse = await fetch(`${apiUrl}/${listingId}?_seller=true`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-        "X-Noroff-API-Key": "97ff17b2-b2b3-419f-b421-537dd89f8294",
-      },
-    });
-
-    if (!listingResponse.ok) {
-      throw new Error(`Failed to fetch created listing: ${listingResponse.statusText}`);
-    }
+    // ...existing code...
 
     alert("Listing created successfully!");
     modal.style.display = "none";
