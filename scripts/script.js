@@ -10,9 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (registerForm) {
     registerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
+      // Simple email regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!name || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
       try {
         const data = await registerUser(name, email, password);
         if (data.data?.id) {
@@ -33,8 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loginForm) {
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
       try {
         const data = await loginUser(email, password);
         if (data.data?.accessToken) {
